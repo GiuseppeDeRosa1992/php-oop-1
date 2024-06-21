@@ -7,6 +7,12 @@ class Movie
     public $genere;
     public $voto;
     public $durata_film;
+
+    //CREO FUNZIONE CHE MI RESTITUISCE TUTTE LE ISTANZE INSIEME DI OGNI FILM CHE VADO A STAMPARE
+    public function film_completo()
+    {
+        return "Titolo: $this->titolo Genere:$this->genere Voto:$this->voto Durata:$this->durata_film";
+    }
 }
 
 //AGGIUNGO ALLA CLASSE MOVIE LA VARIABILE CAPITAN AMERICA
@@ -32,7 +38,6 @@ $la_mano_de_dios->genere = "Drammatico, Sportivo";
 $la_mano_de_dios->voto = 5;
 $la_mano_de_dios->durata_film = "113 Minuti";
 
-
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +53,9 @@ $la_mano_de_dios->durata_film = "113 Minuti";
 <body>
     <ul>
         I Film Sono:
-        <li>
+        <!-- IN QUESTO MODO STAMPO OGNI FILM A MANO E OGNI ISTANZA A MANO -->
+
+        <!-- <li>
             <?= "Titolo: $capitan_america->titolo, Genere: $capitan_america->genere, Voto: $capitan_america->voto, Durata: $capitan_america->durata_film"  ?>
         </li>
         <li>
@@ -56,6 +63,18 @@ $la_mano_de_dios->durata_film = "113 Minuti";
         </li>
         <li>
             <?= "Titolo: $la_mano_de_dios->titolo, Genere: $la_mano_de_dios->genere, Voto: $la_mano_de_dios->voto, Durata: $la_mano_de_dios->durata_film"  ?>
+        </li> -->
+
+
+        <!-- COSI STAMPO TRAMITE LA FUNZIONE FILM_COMPLETO CHE STA NELLA CLASSE MOVIE MA DEVO SEMPRE AGGIUNGERE LA VARIABIKE DEL FILM CHE VOGLIO STAMPARE -->
+        <li>
+            <?= $capitan_america->film_completo() ?>
+        </li>
+        <li>
+            <?= $io_sono_leggenda->film_completo() ?>
+        </li>
+        <li>
+            <?= $la_mano_de_dios->film_completo() ?>
         </li>
     </ul>
 </body>
