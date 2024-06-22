@@ -1,38 +1,7 @@
 <?php
+// INCLUDO QUELLO CHE C'è IN STORE.PHP CHE A SUA VOLTA HA LE FUNZIONI CHE SONO INCLUSE IN MOVIE.PHP
+include __DIR__ . "/store.php";
 
-include __DIR__ . "/models/Movie.php";
-/***********************************************************************  SENZA FUNZIONE COSTRUTTO  *********************************************************/
-
-// //AGGIUNGO ALLA CLASSE MOVIE LA VARIABILE CAPITAN AMERICA 
-// $capitan_america = new Movie();
-// //RINOMINO IL TITOLO PER QUELLA VARIABILE CHE SI TROVA NELLA CLASSE MOVIE
-// $capitan_america->titolo = "Capitan America";
-// //RINOMINO IL GENERE PER QUELLA VARIABILE CHE SI TROVA NELLA CLASSE MOVIE
-// $capitan_america->genere = "Azione, Avventura";
-// //RINOMINO IL VOTO PER QUELLA VARIABILE CHE SI TROVA NELLA CLASSE MOVIE
-// $capitan_america->voto = 4;
-// //RINOMINO LA DURATA PER QUELLA VARIABILE CHE SI TROVA NELLA CLASSE MOVIE
-// $capitan_america->durata_film = "125 Minuti";
-
-// $io_sono_leggenda = new Movie();
-// $io_sono_leggenda->titolo = "Io sono Leggenda";
-// $io_sono_leggenda->genere = "Drammatico";
-// $io_sono_leggenda->voto = 5;
-// $io_sono_leggenda->durata_film = "100 Minuti";
-
-// $la_mano_de_dios = new Movie();
-// $la_mano_de_dios->titolo = "La Mano De Dios";
-// $la_mano_de_dios->genere = "Drammatico, Sportivo";
-// $la_mano_de_dios->voto = 5;
-// $la_mano_de_dios->durata_film = "113 Minuti";
-
-/********************************************************************* CON FUNZIONE COSTRUTTO *********************************************************************************************/
-$capitan_america = new Movie("Capitan America", "Azione, Avventura", 4, "125 Minuti");
-$io_sono_leggenda = new Movie("Io sono Leggenda", "Drammatico", 5, "100 Minuti");
-$la_mano_de_dios = new Movie("La Mano de Dios", "Sportivo", 5, "113 Minuti");
-
-//CREO LISTA DI FILM CHE MI SERVE POI PER NON STAMPARE A MANO OGNI FILM MA LO POSSO FARE CON UN CICLO
-$movies = [$capitan_america, $io_sono_leggenda, $la_mano_de_dios];
 ?>
 
 <!DOCTYPE html>
@@ -41,12 +10,13 @@ $movies = [$capitan_america, $io_sono_leggenda, $la_mano_de_dios];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style.css">
     <title>PHP OOP</title>
 </head>
 
 <body>
-    <ul>
+    <ol class="text-center">
         I Film Sono:
         <!-- IN QUESTO MODO STAMPO OGNI FILM A MANO E OGNI ISTANZA A MANO -->
 
@@ -76,7 +46,26 @@ $movies = [$capitan_america, $io_sono_leggenda, $la_mano_de_dios];
         <?php foreach ($movies as $movie) { ?>
             <li> <?= $movie->film_completo() ?> </li>
         <?php } ?>
-    </ul>
+    </ol>
+
+    <!-- STAMPO LE CARD DEI FILM NELLA LISTA SOPRA -->
+    <h2 class="text-center">Le Card dei Film sono:</h2>
+    <div class="row m-0 p-0 px-2 justify-content-between">
+        <?php foreach ($movies as $movie) { ?>
+            <div class="card col-4 p-2 bg-black">
+                <img src=<?= $movie->path_img ?> class="card-img-top img-fluid h-100" alt="immagine-film">
+                <div class="card-body bg-white">
+                    <h5 class="card-title">Titolo: <?= $movie->titolo ?></h5>
+                    <p class="card-text">Genere: <?= $movie->genere ?></p>
+                    <p class="card-text">Voto: <?= $movie->voto ?></p>
+                    <p class="card-text">Durata: <?= $movie->durata_film ?></p>
+                    <p class="m-0 text-center">
+                        <a href="#film" class="btn btn-primary">Go Film</a>
+                    </p>
+                </div>
+            </div>
+        <?php } ?>
+    </div>
 </body>
 
 </html>
